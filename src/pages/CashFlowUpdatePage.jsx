@@ -12,7 +12,7 @@ const CashFlowUpdatePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Get the current todo details from the state
+  // Get the current cash flow details from the state
   const CashFlow = useSelector((state) => state.detailCashFlow);
   const isUpdateCashFlow = useSelector((state) => state.isUpdateCashFlow);
 
@@ -22,17 +22,17 @@ const CashFlowUpdatePage = () => {
     source: "",
     label: "",
     description: "",
-    nominal: 0,  // Initialize nominal as a number
+    nominal: 0, // Initialize nominal as a number
   });
 
   // Fetch cash flow details when the page loads
   useEffect(() => {
-    dispatch(asyncDetailCashFlow(id));  // Fetch cash flow details
+    dispatch(asyncDetailCashFlow(id)); // Fetch cash flow details
   }, [dispatch, id]);
 
   // Fill form with existing cash flow data
   useEffect(() => {
-    if (cashFlow) {
+    if (CashFlow) {
       setFormData({
         type: CashFlow.type,
         source: CashFlow.source,
@@ -46,8 +46,8 @@ const CashFlowUpdatePage = () => {
   // Navigate when the cash flow is successfully updated
   useEffect(() => {
     if (isUpdateCashFlow) {
-      navigate(`/cashflow/${id}`);  // Redirect to cash flow detail page
-      dispatch(updateCashFlowActionCreator(false));  // Reset update status
+      navigate(`/cashflows/${id}`); // Redirect to cash flow detail page
+      dispatch(updateCashFlowActionCreator(false)); // Reset update status
     }
   }, [isUpdateCashFlow, navigate, id, dispatch]);
 
@@ -56,7 +56,7 @@ const CashFlowUpdatePage = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value,  // Update form data dynamically
+      [name]: value, // Update form data dynamically
     });
   };
 
@@ -64,8 +64,8 @@ const CashFlowUpdatePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(asyncUpdateCashFlow({ id, ...formData }));  // Dispatch update action
-      navigate(`/cashflows`);  // Navigate to the list of cash flows
+      await dispatch(asyncUpdateCashFlow({ id, ...formData })); // Dispatch update action
+      navigate(`/cashflows/${id}`); // Navigate to the detail page after update
     } catch (error) {
       console.error("Update error:", error);
     }
@@ -76,7 +76,9 @@ const CashFlowUpdatePage = () => {
       className="container"
       style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}
     >
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Edit Cash Flow</h1>
+      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+        Edit Cash Flow
+      </h1>
       <form
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column", gap: "15px" }}
