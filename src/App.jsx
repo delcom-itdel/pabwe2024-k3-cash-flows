@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 import CashFlowAddPage from "./pages/CashFlowAddPage";
 import CashFlowUpdatePage from "./pages/CashFlowUpdatePage";
 import CashFlowDetailPage from "./pages/CashFlowDetailPage";
+import CashFlowLabels from "./pages/CashFlowLabels";
 
 function App() {
   // Ambil hanya bagian state yang dibutuhkan
@@ -87,6 +88,7 @@ function App() {
               path="/cashflows/:id/edit"
               element={<CashFlowUpdatePage />}
             />
+            <Route path="/cash-flows/labels" element={<CashFlowLabels />} />
             <Route path="/cash-flows/add" element={<CashFlowAddPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

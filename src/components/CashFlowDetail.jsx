@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { CashFlowItemShape } from "./CashFlowItem"; // Pastikan CashFlowItemShape didefinisikan
 import { postedAt } from "../utils/tools";
-import { FaClock } from "react-icons/fa6"; // Pastikan ikon sudah diinstalbb
+import { FaClock } from "react-icons/fa6"; // Pastikan ikon sudah diinstal
 
 function CashFlowDetail({ cashFlow }) {
   let badgeStatus, badgeLabel;

@@ -1,16 +1,32 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FaPlus, FaUser, FaRightFromBracket } from "react-icons/fa6";
+import { FaPlus, FaUser, FaRightFromBracket, FaList } from "react-icons/fa6";
+import { useState, useEffect } from "react";
 
 function Navigation({ authLogin, onAuthSignOut }) {
   const { id, name, photo } = authLogin;
+  const [labels, setLabels] = useState([]);
+
+  // Ambil data judul dari cashflows
+  useEffect(() => {
+    async function fetchLabels() {
+      try {
+        const response = await fetch("/cash-flows/labels");
+        const data = await response.json();
+        setLabels(data);
+      } catch (error) {
+        console.error("Error fetching labels:", error);
+      }
+    }
+    fetchLabels();
+  }, []);
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            Cash Flow K4
+            Cash Flow K3
           </Link>
 
           <button
@@ -35,6 +51,17 @@ function Navigation({ authLogin, onAuthSignOut }) {
                   <FaPlus /> Create Cash Flow
                 </Link>
               </li>
+
+              {/* Tombol untuk membuka Cash Flow Labels */}
+              <li className="mt-2">
+                <Link
+                  className="btn btn-light btn-sm text-dark"
+                  to="/cash-flows/labels"
+                >
+                  <FaList /> Cash Flow Labels
+                </Link>
+              </li>
+
               <li className="nav-item dropdown">
                 <a
                   className="nav-link mx-2 dropdown-toggle"
@@ -44,7 +71,6 @@ function Navigation({ authLogin, onAuthSignOut }) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {/* Tambahkan default foto jika photo tidak tersedia */}
                   <img
                     className="nav-profile"
                     src={photo || "/default-profile.png"}

@@ -150,14 +150,23 @@ const api = (() => {
   // Menghapus cash flow berdasarkan ID
 
   async function getAllCashFlows() {
-    const token = getAccessToken(); // Pastikan token sudah diambil
+    const token = getAccessToken();
     const response = await fetch(`${BASE_URL}/cash-flows`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`, // Sertakan token di header
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
+
+    const contentType = response.headers.get("content-type");
+    console.log("Content-Type:", contentType); // Logging Content-Type
+
+    if (!contentType || !contentType.includes("application/json")) {
+      const errorText = await response.text();
+      console.log("Error response:", errorText); // Logging error response
+      throw new Error("Server returned non-JSON response");
+    }
 
     const responseJson = await response.json();
 
