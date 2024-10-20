@@ -186,6 +186,25 @@ const api = (() => {
     return response.json();
   }
 
+  //getDailyCashGlowsStats
+  async function getDailyCashFlowStats({ endDate, totalData }) {
+    const url = new URL(`${BASE_URL}/cash-flows/stats/daily`);
+    url.searchParams.append("end_date", endDate);
+    url.searchParams.append("total_data", totalData);
+  
+    const response = await _fetchWithAuth(url.toString(), {
+      method: "GET",
+    });
+  
+    if (!response.ok) {
+      const responseJson = await response.json();
+      throw new Error(responseJson.message || "Failed to fetch daily cash flow stats");
+    }
+  
+    const data = await response.json();
+    return data;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -198,6 +217,7 @@ const api = (() => {
     deleteCashFlow,
     getAllCashFlows,
     getDetailCashFlow,
+    getDailyCashFlowStats
   };
 })();
 
