@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import { FaClock, FaTrash } from "react-icons/fa";
-import Swal from "sweetalert2"; // Ensure you have SweetAlert2 installed
-import { postedAt } from "../utils/tools";
+import Swal from "sweetalert2"; // Pastikan SweetAlert2 sudah terinstal
+import { Link } from "react-router-dom"; // Untuk navigasi ke halaman detail
+import { postedAt } from "../utils/tools"; // Utilitas untuk memformat tanggal
 
 function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
   let badgeStatus, badgeLabel;
 
+  // Menentukan badge berdasarkan tipe cash flow (inflow atau outflow)
   if (cashFlow.type === "inflow") {
     badgeStatus = "badge bg-success text-white ms-3";
     badgeLabel = "Inflow";
@@ -14,6 +16,7 @@ function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
     badgeLabel = "Outflow";
   }
 
+  // Fungsi untuk menangani penghapusan cash flow
   const handleDelete = () => {
     Swal.fire({
       title: "Hapus Cash Flow",
@@ -28,6 +31,7 @@ function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
       buttonsStyling: false,
     }).then((result) => {
       if (result.isConfirmed) {
+        // Hapus cash flow jika id valid
         if (cashFlow.id && Number.isInteger(cashFlow.id)) {
           onDeleteCashFlow(cashFlow.id);
         } else {
@@ -42,12 +46,21 @@ function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
       <div className="card-body">
         <div className="row align-items-center">
           <div className="col-8">
-            <h5>{cashFlow.label}</h5>
+            {/* Tambahkan Link di sini untuk mengarahkan ke halaman detail berdasarkan ID */}
+            <h5>
+              <Link
+                to={`/cashflows/${cashFlow.id}`}
+                className="text-decoration-none"
+              >
+                {cashFlow.label}
+              </Link>
+            </h5>
             <span className={badgeStatus}>{badgeLabel}</span>
             <p>{cashFlow.description}</p>
             <p>Nominal: {cashFlow.nominal}</p>
           </div>
           <div className="col-4 text-end">
+            {/* Tombol untuk menghapus cash flow */}
             <button
               type="button"
               onClick={handleDelete}
@@ -57,6 +70,7 @@ function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
             </button>
           </div>
           <div className="col-12">
+            {/* Tampilkan waktu pembuatan cash flow */}
             <div className="text-sm op-5">
               <FaClock />
               <span className="ps-2">{postedAt(cashFlow.created_at)}</span>
@@ -69,6 +83,7 @@ function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
 }
 
 CashFlowItem.propTypes = {
+  // Properti yang diharapkan oleh komponen ini
   cashFlow: PropTypes.shape({
     id: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,

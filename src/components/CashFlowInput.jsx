@@ -8,7 +8,6 @@ function CashFlowInput({ onAddCashFlow }) {
   const [label, setLabel] = useState("");
   const [description, setDescription] = useState("");
   const [nominal, setNominal] = useState("");
-  //b
 
   const handleOnAddCashFlow = (e) => {
     e.preventDefault();

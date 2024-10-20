@@ -82,9 +82,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/users/me" element={<ProfilePage />} />
-            <Route path="/cash-flows/:id" element={<CashFlowDetailPage />} />
+            <Route path="/cashflows/:id" element={<CashFlowDetailPage />} />
             <Route
-              path="/cash-flows/:id/edit"
+              path="/cashflows/:id/edit"
               element={<CashFlowUpdatePage />}
             />
             <Route path="/cash-flows/add" element={<CashFlowAddPage />} />
