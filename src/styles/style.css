@@ -54,3 +54,57 @@ a {
 		transform: rotate(1turn);
 	}
 }
+
+.form-container {
+	width: 50%;
+	margin: 50px auto;
+	background-color: #f8f9fa;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(red, green, blue, alpha);
+}
+
+
+.cashflow-stats-container {
+    max-width: 800px; 
+    margin: 350px auto;
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+h1 {
+    text-align: center; 
+    color: #333; 
+    margin-bottom: 20px; 
+}
+
+
+table {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-bottom: 20px; 
+}
+
+th, td {
+    text-align: left;
+    padding: 8px; 
+    border-bottom: 1px solid #ddd; 
+}
+
+th {
+    background-color: #0d6efd; 
+    color: white; 
+}
+
+td {
+    background-color: #f4f4f4; 
+}
+
+.navbar-nav .mt-2{
+	margin-right: 10px;
+}
+
+.navbar-nav .btn{
+	margin-top: 5px;
+}

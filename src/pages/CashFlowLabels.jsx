@@ -26,7 +26,7 @@ function CashFlowLabels() {
   }, []);
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5">
       <h1>Cash Flow Labels</h1>
       {error ? (
         <p>Error: {error}</p>

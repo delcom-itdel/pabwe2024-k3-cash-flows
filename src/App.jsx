@@ -14,6 +14,7 @@ import CashFlowAddPage from "./pages/CashFlowAddPage";
 import CashFlowUpdatePage from "./pages/CashFlowUpdatePage";
 import CashFlowDetailPage from "./pages/CashFlowDetailPage";
 import CashFlowLabels from "./pages/CashFlowLabels";
+import DailyCashFlowStats from "./components/DailyCashFlowStats";
 
 function App() {
   // Ambil hanya bagian state yang dibutuhkan
@@ -90,6 +91,7 @@ function App() {
             />
             <Route path="/cash-flows/labels" element={<CashFlowLabels />} />
             <Route path="/cash-flows/add" element={<CashFlowAddPage />} />
+            <Route path="/cash-flows/stats/daily" element={<DailyCashFlowStats/>}/>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

@@ -46,6 +46,15 @@ function Navigation({ authLogin, onAuthSignOut }) {
               <li className="mt-2">
                 <Link
                   className="btn btn-light btn-sm text-dark"
+                  to="/cash-flows/stats/daily"
+                >
+                  Get Stats Daily
+                </Link>
+              </li>
+              
+              <li className="mt-2">
+                <Link
+                  className="btn btn-light btn-sm text-dark"
                   to="/cash-flows/add"
                 >
                   <FaPlus /> Create Cash Flow
