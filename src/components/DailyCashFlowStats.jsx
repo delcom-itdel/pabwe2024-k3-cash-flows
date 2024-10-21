@@ -14,6 +14,14 @@ function getCurrentDateTime() {
   ).padStart(2, "0")}`;
 }
 
+function formatCurrency(value) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  }).format(value);
+}
+
 function DailyCashFlowStats() {
   const [cashFlowData, setCashFlowData] = useState({
     inflow: {},
@@ -31,10 +39,28 @@ function DailyCashFlowStats() {
           endDate: endDate,
           totalData: 7, // Angka ini dapat disesuaikan sesuai kebutuhan
         });
+
+        // Format the data to float and then to Indonesian Rupiah
+        const inflow = {};
+        const outflow = {};
+        const total = {};
+
+        Object.keys(result.data.stats_inflow).forEach((date) => {
+          inflow[date] = formatCurrency(
+            parseFloat(result.data.stats_inflow[date])
+          );
+          outflow[date] = formatCurrency(
+            parseFloat(result.data.stats_outflow[date])
+          );
+          total[date] = formatCurrency(
+            parseFloat(result.data.stats_cashflow[date])
+          );
+        });
+
         setCashFlowData({
-          inflow: result.data.stats_inflow,
-          outflow: result.data.stats_outflow,
-          total: result.data.stats_cashflow,
+          inflow,
+          outflow,
+          total,
         });
       } catch (err) {
         setError(err.message);

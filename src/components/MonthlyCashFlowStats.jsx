@@ -14,6 +14,14 @@ function getCurrentDateTime() {
   ).padStart(2, "0")}`;
 }
 
+function formatCurrency(value) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  }).format(value);
+}
+
 function MonthlyCashFlowStats() {
   const [cashFlowData, setCashFlowData] = useState({
     inflow: {},
@@ -31,10 +39,28 @@ function MonthlyCashFlowStats() {
           endDate: endDate,
           totalData: 12,
         });
+
+        // Format the data to float and then to Indonesian Rupiah
+        const inflow = {};
+        const outflow = {};
+        const total = {};
+
+        Object.keys(result.stats_inflow).forEach((month) => {
+          inflow[month] = formatCurrency(
+            parseFloat(result.stats_inflow[month])
+          );
+          outflow[month] = formatCurrency(
+            parseFloat(result.stats_outflow[month])
+          );
+          total[month] = formatCurrency(
+            parseFloat(result.stats_cashflow[month])
+          );
+        });
+
         setCashFlowData({
-          inflow: result.stats_inflow,
-          outflow: result.stats_outflow,
-          total: result.stats_cashflow,
+          inflow,
+          outflow,
+          total,
         });
       } catch (err) {
         setError(err.message);

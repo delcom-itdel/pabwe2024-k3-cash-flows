@@ -7,7 +7,7 @@ function Navigation({ authLogin, onAuthSignOut }) {
   const { id, name, photo } = authLogin;
   const [labels, setLabels] = useState([]);
 
-  // Ambil data judul dari cashflows
+  // Fetch data for labels
   useEffect(() => {
     async function fetchLabels() {
       try {
@@ -22,111 +22,109 @@ function Navigation({ authLogin, onAuthSignOut }) {
   }, []);
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            Cash Flow K3
-          </Link>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          Cash Flow K3
+        </Link>
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navApp"
-            aria-controls="navApp"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navApp"
+          aria-controls="navApp"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-          <div className="collapse navbar-collapse" id="navApp">
-            <ul className="navbar-nav ms-auto">
-              <li className="mt-2">
-                <Link
-                  className="btn btn-light btn-sm text-dark"
-                  to="/cash-flows/stats/daily"
-                >
-                  Get Stats Daily
-                </Link>
-              </li>
+        <div className="collapse navbar-collapse" id="navApp">
+          <ul className="navbar-nav ms-auto d-flex align-items-center">
+            {/* Reordered buttons and styled them */}
+            <li className="nav-item mx-2">
+              <Link
+                className="btn btn-light btn-sm text-dark"
+                to="/cash-flows/add"
+              >
+                <FaPlus className="me-1" /> Create Cash Flow
+              </Link>
+            </li>
 
-              <li className="mt-2">
-                <Link
-                  className="btn btn-light btn-sm text-dark"
-                  to="/cash-flows/stats/Monthly"
-                >
-                  Get Stats Monthly
-                </Link>
-              </li>
+            <li className="nav-item mx-2">
+              <Link
+                className="btn btn-light btn-sm text-dark"
+                to="/cash-flows/labels"
+              >
+                <FaList className="me-1" /> Cash Flow Labels
+              </Link>
+            </li>
 
-              <li className="mt-2">
-                <Link
-                  className="btn btn-light btn-sm text-dark"
-                  to="/cash-flows/add"
-                >
-                  <FaPlus /> Create Cash Flow
-                </Link>
-              </li>
+            <li className="nav-item mx-2">
+              <Link
+                className="btn btn-light btn-sm text-dark"
+                to="/cash-flows/stats/daily"
+              >
+                Get Stats Daily
+              </Link>
+            </li>
 
-              {/* Tombol untuk membuka Cash Flow Labels */}
-              <li className="mt-2">
-                <Link
-                  className="btn btn-light btn-sm text-dark"
-                  to="/cash-flows/labels"
-                >
-                  <FaList /> Cash Flow Labels
-                </Link>
-              </li>
+            <li className="nav-item mx-2">
+              <Link
+                className="btn btn-light btn-sm text-dark"
+                to="/cash-flows/stats/monthly"
+              >
+                Get Stats Monthly
+              </Link>
+            </li>
 
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link mx-2 dropdown-toggle"
-                  href="#"
-                  id="navUser"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    className="nav-profile"
-                    src={photo || "/default-profile.png"}
-                    alt={id}
-                    title={name}
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "50%",
-                    }}
-                  />
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navUser"
-                >
-                  <li>
-                    <Link className="dropdown-item" to="/users/me">
-                      <FaUser /> Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className="dropdown-item"
-                      onClick={onAuthSignOut}
-                    >
-                      <FaRightFromBracket />
-                      Sign out
-                    </button>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+            {/* User profile dropdown */}
+            <li className="nav-item dropdown mx-2">
+              <a
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                id="navUser"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  className="nav-profile"
+                  src={photo || "/default-profile.png"}
+                  alt={id}
+                  title={name}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                  }}
+                />
+              </a>
+              <ul
+                className="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navUser"
+              >
+                <li>
+                  <Link className="dropdown-item" to="/users/me">
+                    <FaUser className="me-1" /> Profile
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    className="dropdown-item"
+                    onClick={onAuthSignOut}
+                  >
+                    <FaRightFromBracket className="me-1" /> Sign out
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
 
