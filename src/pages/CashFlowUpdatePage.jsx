@@ -74,9 +74,18 @@ const CashFlowUpdatePage = () => {
   return (
     <div
       className="container"
-      style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}
+      style={{
+        maxWidth: "600px",
+        margin: "0 auto",
+        padding: "20px",
+        backgroundColor: "#f7f9fc", // Light blue background
+        borderRadius: "12px",
+        boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
+      }}
     >
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+      <h1
+        style={{ textAlign: "center", marginBottom: "20px", color: "#007bff" }}
+      >
         Edit Cash Flow
       </h1>
       <form
@@ -90,24 +99,32 @@ const CashFlowUpdatePage = () => {
               display: "block",
               marginBottom: "5px",
               fontWeight: "bold",
+              color: "#333",
             }}
           >
             Type:
           </label>
-          <input
-            type="text"
+          <select
             id="type"
             name="type"
             value={formData.type}
             onChange={handleChange}
             style={{
               width: "100%",
-              padding: "8px",
+              padding: "10px",
               borderRadius: "5px",
               border: "1px solid #ccc",
+              backgroundColor: "#e3f2fd", // Light blue background for the dropdown
+              color: "#333",
+              cursor: "pointer",
             }}
-          />
+          >
+            <option value="">Pilih Tipe</option>
+            <option value="inflow">Inflow</option>
+            <option value="outflow">Outflow</option>
+          </select>
         </div>
+
         <div>
           <label
             htmlFor="source"
@@ -115,24 +132,33 @@ const CashFlowUpdatePage = () => {
               display: "block",
               marginBottom: "5px",
               fontWeight: "bold",
+              color: "#333",
             }}
           >
             Source:
           </label>
-          <input
-            type="text"
+          <select
             id="source"
             name="source"
             value={formData.source}
             onChange={handleChange}
             style={{
               width: "100%",
-              padding: "8px",
+              padding: "10px",
               borderRadius: "5px",
               border: "1px solid #ccc",
+              backgroundColor: "#e3f2fd", // Light blue background for the dropdown
+              color: "#333",
+              cursor: "pointer",
             }}
-          />
+          >
+            <option value="">Pilih Sumber</option>
+            <option value="cash">Cash</option>
+            <option value="savings">Savings</option>
+            <option value="loans">Loans</option>
+          </select>
         </div>
+
         <div>
           <label
             htmlFor="label"
@@ -140,6 +166,7 @@ const CashFlowUpdatePage = () => {
               display: "block",
               marginBottom: "5px",
               fontWeight: "bold",
+              color: "#333",
             }}
           >
             Label:
@@ -152,12 +179,15 @@ const CashFlowUpdatePage = () => {
             onChange={handleChange}
             style={{
               width: "100%",
-              padding: "8px",
+              padding: "10px",
               borderRadius: "5px",
               border: "1px solid #ccc",
+              backgroundColor: "#e8f5e9", // Light green background for inputs
+              color: "#333",
             }}
           />
         </div>
+
         <div>
           <label
             htmlFor="description"
@@ -165,6 +195,7 @@ const CashFlowUpdatePage = () => {
               display: "block",
               marginBottom: "5px",
               fontWeight: "bold",
+              color: "#333",
             }}
           >
             Description:
@@ -176,12 +207,15 @@ const CashFlowUpdatePage = () => {
             onChange={handleChange}
             style={{
               width: "100%",
-              padding: "8px",
+              padding: "10px",
               borderRadius: "5px",
               border: "1px solid #ccc",
+              backgroundColor: "#e8f5e9", // Light green background for textarea
+              color: "#333",
             }}
           />
         </div>
+
         <div>
           <label
             htmlFor="nominal"
@@ -189,6 +223,7 @@ const CashFlowUpdatePage = () => {
               display: "block",
               marginBottom: "5px",
               fontWeight: "bold",
+              color: "#333",
             }}
           >
             Nominal:
@@ -201,21 +236,26 @@ const CashFlowUpdatePage = () => {
             onChange={handleChange}
             style={{
               width: "100%",
-              padding: "8px",
+              padding: "10px",
               borderRadius: "5px",
               border: "1px solid #ccc",
+              backgroundColor: "#e8f5e9", // Light green background for inputs
+              color: "#333",
             }}
           />
         </div>
+
         <button
           type="submit"
           style={{
-            padding: "10px 20px",
-            backgroundColor: "#007bff",
+            padding: "12px 20px",
+            backgroundColor: "#007bff", // Blue background for button
             color: "#fff",
             border: "none",
             borderRadius: "5px",
             cursor: "pointer",
+            fontWeight: "bold",
+            transition: "background-color 0.3s",
           }}
         >
           Update Cash Flow
