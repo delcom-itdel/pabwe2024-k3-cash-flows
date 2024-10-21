@@ -205,6 +205,24 @@ const api = (() => {
     return data;
   }
 
+  async function getMonthlyCashFlowStats({ endDate, totalData }) {
+    const url = new URL(`${BASE_URL}/cash-flows/stats/monthly`);
+    url.searchParams.append("end_date", endDate);
+    url.searchParams.append("total_data", totalData);
+  
+    const response = await _fetchWithAuth(url.toString(), {
+      method: "GET",
+    });
+  
+    if (!response.ok) {
+      const responseJson = await response.json();
+      throw new Error(responseJson.message || "Failed to fetch monthly cash flow stats");
+    }
+  
+    const responseJson = await response.json();
+    return responseJson.data;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -217,7 +235,8 @@ const api = (() => {
     deleteCashFlow,
     getAllCashFlows,
     getDetailCashFlow,
-    getDailyCashFlowStats
+    getDailyCashFlowStats,
+    getMonthlyCashFlowStats
   };
 })();
 
