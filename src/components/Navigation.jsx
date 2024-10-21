@@ -51,8 +51,6 @@ function Navigation({ authLogin, onAuthSignOut }) {
                   Get Stats Daily
                 </Link>
               </li>
-<<<<<<< HEAD
-=======
 
               <li className="mt-2">
                 <Link
@@ -62,8 +60,7 @@ function Navigation({ authLogin, onAuthSignOut }) {
                   Get Stats Monthly
                 </Link>
               </li>
->>>>>>> c8a4b7a18784230d53848096ba3db0983cb211d3
-              
+
               <li className="mt-2">
                 <Link
                   className="btn btn-light btn-sm text-dark"
