@@ -1,32 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate instead of useHistory
 import api from "../utils/api"; // Ensure this path is correct
 
 function CashFlowLabels() {
   const [labels, setLabels] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Use useNavigate for navigation in React Router v6
 
   useEffect(() => {
     async function fetchLabels() {
       try {
         const token = api.getAccessToken();
-        console.log("Token:", token); // Logging token for debugging purposes
-
         if (!token) {
           throw new Error("No valid token found");
         }
 
         const cashFlows = await api.getAllCashFlows();
-        const cashFlowLabels = cashFlows.map((cashFlow) => cashFlow.label);
+        const cashFlowLabels = cashFlows.map((cashFlow) => ({
+          label: cashFlow.label,
+          id: cashFlow.id, // Assuming each cashFlow has an 'id'
+        }));
         setLabels(cashFlowLabels);
       } catch (error) {
         setError(error.message);
       } finally {
-        setLoading(false); // Set loading to false after data is fetched
+        setLoading(false);
       }
     }
     fetchLabels();
   }, []);
+
+  // Handle click event to navigate to the detail page
+  const handleLabelClick = (id) => {
+    navigate(`/cashflows/${id}`); // Navigate to detail page based on ID
+  };
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
@@ -66,9 +74,10 @@ function CashFlowLabels() {
           }}
         >
           {labels.length > 0 ? (
-            labels.map((label, index) => (
+            labels.map((cashFlow, index) => (
               <div
                 key={index}
+                onClick={() => handleLabelClick(cashFlow.id)} // Add click event handler
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -78,11 +87,12 @@ function CashFlowLabels() {
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                   width: "100%",
                   maxWidth: "600px",
-                  borderLeft: "5px solid #007bff", // Blue line on the left
+                  borderLeft: "5px solid #007bff",
+                  cursor: "pointer", // Show pointer on hover to indicate it's clickable
                 }}
               >
                 <h2 style={{ color: "#007bff", margin: 0, fontSize: "1.2rem" }}>
-                  {label}
+                  {cashFlow.label}
                 </h2>
               </div>
             ))

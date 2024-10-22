@@ -18,7 +18,6 @@ import DailyCashFlowStats from "./components/DailyCashFlowStats";
 import MonthlyCashFlowStats from "./components/MonthlyCashFlowStats";
 
 function App() {
-  // Ambil hanya bagian state yang dibutuhkan
   const authLogin = useSelector((state) => state.authLogin);
   const isPreload = useSelector((state) => state.isPreload);
   const location = useLocation();
@@ -85,7 +84,11 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/users/me" element={<ProfilePage />} />
-            <Route path="/cashflows/:id" element={<CashFlowDetailPage />} />
+            <Route
+              path="/cashflows/:id"
+              element={<CashFlowDetailPage />}
+            />{" "}
+            {/* Route for details */}
             <Route
               path="/cashflows/:id/edit"
               element={<CashFlowUpdatePage />}
