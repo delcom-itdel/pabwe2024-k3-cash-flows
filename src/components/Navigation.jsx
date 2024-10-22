@@ -25,7 +25,7 @@ function Navigation({ authLogin, onAuthSignOut }) {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Cash Flow K3
+          <div className="judul">Cash Flow K3</div>
         </Link>
 
         <button

@@ -12,7 +12,13 @@ function CashFlowInput({ onAddCashFlow }) {
   const handleOnAddCashFlow = (e) => {
     e.preventDefault();
 
-    if (!type || !source || !label || !description || nominal <= 0) {
+    if (
+      !type ||
+      !source ||
+      !label ||
+      !description ||
+      parseFloat(nominal.replace(/,/g, "")) <= 0
+    ) {
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -26,8 +32,18 @@ function CashFlowInput({ onAddCashFlow }) {
       source,
       label,
       description,
-      nominal: parseFloat(nominal),
+      nominal: parseFloat(nominal.replace(/,/g, "")), // Hilangkan koma sebelum mengirim data
     });
+  };
+
+  const handleNominalChange = (e) => {
+    let value = e.target.value;
+    // Hilangkan semua karakter selain angka
+    value = value.replace(/[^0-9]/g, "");
+
+    // Tambahkan koma sebagai pemisah ribuan
+    const formattedValue = new Intl.NumberFormat().format(value);
+    setNominal(formattedValue);
   };
 
   return (
@@ -103,13 +119,12 @@ function CashFlowInput({ onAddCashFlow }) {
           Nominal
         </label>
         <input
-          type="number"
+          type="text" // Ubah dari "number" ke "text" agar bisa memasukkan format dengan koma
           id="inputNominal"
           value={nominal}
-          onChange={(e) => setNominal(e.target.value)}
+          onChange={handleNominalChange}
           className="form-control"
           required
-          min="1"
         />
       </div>
 

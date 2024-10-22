@@ -19,7 +19,7 @@ function HomePage() {
   useEffect(() => {
     if (isDeleteCashFlow) {
       Swal.fire({
-        position: "top-end",
+        position: "center", // Ubah posisi notifikasi menjadi di tengah
         icon: "success",
         title: "Cash flow berhasil dihapus!",
         showConfirmButton: false,

@@ -26,6 +26,26 @@ a {
   height: 100vh;
   background-color: #e8e8e8;
 }
+
+.navbar-brand {
+  color: #007bff; /* Warna teks biru */
+  padding: 10px 15px; /* Menambahkan padding untuk tampilan lebih luas */
+  border-radius: 5px; /* Agar tombol terlihat seperti tombol */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Menambahkan efek transisi */
+  text-decoration: none; /* Menghilangkan garis bawah */
+}
+
+.navbar-brand .judul:hover {
+  color: #000;
+}
+
+.navbar-brand.active {
+  text-decoration: underline; /* Garis bawah saat aktif */
+  background-color: #e7e7e7;
+}
 .loader {
   position: absolute;
   margin: 0 auto;
