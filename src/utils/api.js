@@ -147,7 +147,7 @@ const api = (() => {
     return responseJson.message;
   }
 
-  // Menghapus cash flow berdasarkan ID
+  //mengambil semua data
 
   async function getAllCashFlows() {
     const token = getAccessToken();
@@ -178,6 +178,8 @@ const api = (() => {
 
     return responseJson.data.cash_flows;
   }
+
+  // Menghapus cash flow berdasarkan ID
 
   async function deleteCashFlow(id) {
     const response = await _fetchWithAuth(`${BASE_URL}/cash-flows/${id}`, {
