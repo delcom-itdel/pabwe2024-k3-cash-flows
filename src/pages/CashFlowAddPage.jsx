@@ -16,7 +16,7 @@ function CashFlowAddPage() {
   useEffect(() => {
     if (isAddCashFlow) {
       Swal.fire({
-        position: "center", // Ubah posisi notifikasi menjadi di tengah
+        position: "center",
         icon: "success",
         title: "Cash flow berhasil ditambahkan!",
         showConfirmButton: false,
