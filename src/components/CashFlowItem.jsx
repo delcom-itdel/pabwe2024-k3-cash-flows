@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { FaClock, FaTrash } from "react-icons/fa";
-import Swal from "sweetalert2"; // Pastikan SweetAlert2 sudah terinstal
-import { Link } from "react-router-dom"; // Untuk navigasi ke halaman detail
-import { postedAt } from "../utils/tools"; // Utilitas untuk memformat tanggal
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { postedAt } from "../utils/tools";
 
 function CashFlowItem({ cashFlow, onDeleteCashFlow }) {
   let badgeStatus, badgeLabel;
