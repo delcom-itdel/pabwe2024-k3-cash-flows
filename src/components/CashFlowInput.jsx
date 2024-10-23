@@ -119,7 +119,7 @@ function CashFlowInput({ onAddCashFlow }) {
           Nominal
         </label>
         <input
-          type="text" // Ubah dari "number" ke "text" agar bisa memasukkan format dengan koma
+          type="text"
           id="inputNominal"
           value={nominal}
           onChange={handleNominalChange}
